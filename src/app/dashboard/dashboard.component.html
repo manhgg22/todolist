@@ -1,0 +1,32 @@
+<h2>Danh sách Công Việc</h2>
+<nz-table #basicTable [nzData]="todos" [nzBordered]="true">
+  <thead>
+    <tr>
+      <th nzWidth="25%">Người làm</th>
+      <th nzWidth="25%">Tiêu đề</th>
+      <th nzWidth="20%">Trạng thái</th>
+      <th nzWidth="20%">Action</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let todo of todos">
+      <td>{{ todo?.user?.name }}</td>
+      <td>{{ todo?.title }}</td>
+      <td>
+        <span [ngClass]="{ 'completed': todo?.completed, 'not-completed': !todo?.completed }">
+          {{ todo?.completed ? '✔ Hoàn thành' : '❌ Chưa hoàn thành' }}
+        </span>
+      </td>
+      <td class="action-icons">
+        <nz-icon nzType="delete" nzTheme="outline" class="action-icon" />  
+        <nz-icon nzType="plus" nzTheme="outline" class="action-icon" />  
+        <nz-icon nzType="edit" nzTheme="outline" class="action-icon" />  
+        <nz-icon nzType="eye" nzTheme="outline" class="action-icon" />
+      </td>
+      
+      
+      
+    </tr>
+  </tbody>
+</nz-table>

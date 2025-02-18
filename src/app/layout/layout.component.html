@@ -1,0 +1,52 @@
+<nz-layout>
+  <nz-header class="header">
+    <div class="logo"></div>
+    <ul nz-menu nzTheme="dark" nzMode="horizontal" class="header-menu">
+      <li nz-menu-item>Nav 1</li>
+      <li nz-menu-item nzSelected>Nav 2</li>
+      <li nz-menu-item>Nav 3</li>
+      <li nz-menu-item (click)="logout()" class="logout-btn">
+        <span nz-icon nzType="logout"></span> Logout
+      </li>
+    </ul>
+  </nz-header>
+
+  <nz-content class="outer-content">
+    <nz-layout class="inner-layout">
+      <nz-sider nzWidth="200px" nzTheme="light">
+        <ul nz-menu nzMode="inline" class="sider-menu">
+          <li nz-submenu nzOpen nzTitle="Subnav 1" nzIcon="user">
+            <ul>
+              <li nz-menu-item nzSelected>Option 1</li>
+              <li nz-menu-item>Option 2</li>
+              <li nz-menu-item>Option 3</li>
+              <li nz-menu-item>Option 4</li>
+            </ul>
+          </li>
+          <li nz-submenu nzOpen nzTitle="Subnav 2" nzIcon="laptop">
+            <ul>
+              <li nz-menu-item>Option 5</li>
+              <li nz-menu-item>Option 6</li>
+              <li nz-menu-item>Option 7</li>
+              <li nz-menu-item>Option 8</li>
+            </ul>
+          </li>
+          <li nz-submenu nzOpen nzTitle="Subnav 3" nzIcon="notification">
+            <ul>
+              <li nz-menu-item>Option 9</li>
+              <li nz-menu-item>Option 10</li>
+              <li nz-menu-item>Option 11</li>
+              <li nz-menu-item>Option 12</li>
+            </ul>
+          </li>
+        </ul>
+      </nz-sider>
+
+      <nz-content class="inner-content">
+        <app-dashboard></app-dashboard>
+      </nz-content>
+    </nz-layout>
+
+    <nz-footer>Ant Design ©2020 Implement By Angular</nz-footer>
+  </nz-content>
+</nz-layout>

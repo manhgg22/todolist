@@ -19,14 +19,12 @@
         </span>
       </td>
       <td class="action-icons">
-        <nz-icon nzType="delete" nzTheme="outline" class="action-icon" />  
-        <nz-icon nzType="plus" nzTheme="outline" class="action-icon" />  
-        <nz-icon nzType="edit" nzTheme="outline" class="action-icon" />  
-        <nz-icon nzType="eye" nzTheme="outline" class="action-icon" />
+        <nz-icon nzType="delete" nzTheme="outline" class="action-icon" (click)="confirmDelete(todo.id)" />  
+        <nz-icon nzType="plus" nzTheme="outline" class="action-icon" (click)="openCreateModal()" /> 
+        <nz-icon nzType="edit" nzTheme="outline" class="action-icon" (click)="openEditModal(todo)" />  
+        <nz-icon nzType="eye" nzTheme="outline" class="action-icon" (click)="openViewModal(todo)"></nz-icon>
+        <nz-icon nzType="profile" nzTheme="outline" class="action-icon" (click)="openTodoDrawer(todo)"/>
       </td>
-      
-      
-      
     </tr>
   </tbody>
 </nz-table>

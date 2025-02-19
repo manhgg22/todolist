@@ -1,1 +1,27 @@
-<p>create works!</p>
+<h2>Thêm Công Việc Mới</h2>
+
+<form [formGroup]="createForm">
+  <!-- Nhập Người làm -->
+  <label for="user">Người làm:</label>
+  <input id="user" nz-input formControlName="user" placeholder="Nhập tên người làm" />
+  <br /><br />
+
+  <!-- Nhập Tiêu đề -->
+  <label for="title">Tiêu đề:</label>
+  <input id="title" nz-input formControlName="title" placeholder="Nhập tiêu đề" />
+  <br /><br />
+
+  <!-- Chọn Trạng thái -->
+  <label>Trạng thái:</label>
+  <nz-select formControlName="completed" style="width: 100%;">
+    <nz-option nzValue="false" nzLabel="❌ Chưa hoàn thành"></nz-option>
+    <nz-option nzValue="true" nzLabel="✔ Đã hoàn thành"></nz-option>
+  </nz-select>
+  <br /><br />
+
+  <!-- Nút hành động -->
+  <div class="action-buttons">
+    <button nz-button nzType="primary" (click)="saveTodo()" [disabled]="createForm.invalid">Tạo</button>
+    <button nz-button nzType="default" (click)="closeModal()">Hủy</button>
+  </div>
+</form>

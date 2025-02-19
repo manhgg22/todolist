@@ -1,1 +1,5 @@
-<p>view works!</p>
+<p><strong>Người làm:</strong> {{ todo?.user?.name || 'Không có dữ liệu' }}</p>
+<p><strong>Tiêu đề:</strong> {{ todo?.title || 'Không có dữ liệu' }}</p>
+<p><strong>Trạng thái:</strong> 
+  {{ todo?.completed ? '✔ Hoàn thành' : '❌ Chưa hoàn thành' }}
+</p>

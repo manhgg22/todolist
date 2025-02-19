@@ -1,0 +1,23 @@
+.drawer-container {
+    padding: 16px;
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 16px;
+  }
+  
+  .status-pending {
+    color: orange;
+  }
+  
+  .status-in-progress {
+    color: blue;
+  }
+  
+  .status-completed {
+    color: green;
+  }
+  

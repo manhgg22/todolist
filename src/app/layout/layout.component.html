@@ -5,9 +5,15 @@
       <li nz-menu-item>Nav 1</li>
       <li nz-menu-item nzSelected>Nav 2</li>
       <li nz-menu-item>Nav 3</li>
-      <li nz-menu-item (click)="logout()" class="logout-btn">
-        <span nz-icon nzType="logout"></span> Logout
-      </li>
+      <div class="right-menu">
+        <li class="admin-item" (click)="openDrawer()">
+          <nz-avatar [nzSrc]="userAvatar" nzSize="small" nzShape="square"></nz-avatar>
+          {{ userName }}
+        </li>
+        <li nz-menu-item class="logout-btn" (click)="logout()">
+          <span nz-icon nzType="logout"></span> Logout
+        </li>
+      </div>
     </ul>
   </nz-header>
 
@@ -50,3 +56,18 @@
     <nz-footer>Ant Design ©2020 Implement By Angular</nz-footer>
   </nz-content>
 </nz-layout>
+
+<!-- Drawer hiển thị thông tin admin -->
+<nz-drawer [nzVisible]="isDrawerVisible" [nzWidth]="300" nzTitle="Thông tin Admin" (nzOnClose)="closeDrawer()">
+  <div class="admin-profile">
+    <nz-avatar [nzSrc]="userAvatar" nzSize="large"></nz-avatar>
+    <h3>{{ adminProfile.fullName }}</h3>
+    <p><strong>Username:</strong> {{ adminProfile.username }}</p>
+    <p><strong>Email:</strong> {{ adminProfile.email }}</p>
+    <p><strong>Điện thoại:</strong> {{ adminProfile.phone }}</p>
+    <p><strong>Thành phố:</strong> {{ adminProfile.city }}</p>
+    <p><strong>Quốc gia:</strong> {{ adminProfile.country }}</p>
+    <p><strong>Chức vụ:</strong> {{ adminProfile.role }}</p>
+    <p><strong>Đăng nhập gần nhất:</strong> {{ adminProfile.lastLogin }}</p>
+  </div>
+</nz-drawer>

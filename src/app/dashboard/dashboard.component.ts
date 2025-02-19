@@ -1,4 +1,4 @@
-import { Component, createComponent, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TodoService } from '../todo.service';
 import { Todo } from '../todo';
 import { CommonModule } from '@angular/common';
@@ -11,42 +11,58 @@ import { ProfileComponent } from '../profile/profile.component';
 import { NzDrawerService } from 'ng-zorro-antd/drawer';
 import { EditTodoComponent } from '../todolist/edit/edit.component';
 import { CreateTodoComponent } from '../todolist/create/create.component';
+import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, NzTableModule, NzIconModule, ],
-  providers: [NzModalService, NzMessageService,NzDrawerService], 
+  imports: [CommonModule, NzTableModule, NzIconModule,NzPaginationModule],
+  providers: [NzModalService, NzMessageService, NzDrawerService],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  todos: Todo[] = [];
+  todos: Todo[] = []; // Danh sách công việc đầy đủ
+  displayTodos: Todo[] = []; // Danh sách công việc hiển thị theo trang
+  pageSize = 10; // Số công việc mỗi trang
+  pageIndex = 1; // Trang hiện tại
 
   constructor(
     private todoService: TodoService,
     private modal: NzModalService,
     private message: NzMessageService,
-    private drawer: NzDrawerService,
-    private modalService: NzModalService
+    private drawer: NzDrawerService
   ) {}
 
   ngOnInit() {
     this.loadTodos();
   }
 
+  // Lấy danh sách công việc từ API
   loadTodos() {
     this.todoService.getTodosWithUsers().subscribe({
       next: (data) => {
         this.todos = data;
-        
+        this.updateDisplayTodos(); // Cập nhật danh sách hiển thị ban đầu
       },
       error: (err) => {
         console.error('❌ Lỗi khi tải dữ liệu:', err);
       }
     });
   }
-  
+
+  // Cập nhật danh sách công việc hiển thị dựa trên trang hiện tại
+  updateDisplayTodos() {
+    const startIndex = (this.pageIndex - 1) * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    this.displayTodos = this.todos.slice(startIndex, endIndex);
+  }
+
+  // Khi chuyển trang, cập nhật danh sách hiển thị
+  onPageChange(index: number) {
+    this.pageIndex = index;
+    this.updateDisplayTodos();
+  }
 
   confirmDelete(todoId: number) {
     this.modal.confirm({
@@ -63,6 +79,7 @@ export class DashboardComponent implements OnInit {
     this.todoService.deleteTodo(todoId).subscribe({
       next: () => {
         this.todos = this.todos.filter(todo => todo.id !== todoId);
+        this.updateDisplayTodos();
         this.message.success('🗑️ Xóa công việc thành công!');
       },
       error: () => {
@@ -72,22 +89,23 @@ export class DashboardComponent implements OnInit {
   }
 
   openViewModal(todo: Todo) {
-    console.log('📌 Dữ liệu gửi vào modal:', todo)
     this.modal.create({
       nzTitle: 'Thông tin Công Việc',
-      nzContent: ViewComponent, // Component hiển thị modal
-      nzData: { todo }, // Truyền dữ liệu vào modal
-      nzFooter: null // Ẩn footer
+      nzContent: ViewComponent,
+      nzData: { todo },
+      nzFooter: null
     });
   }
+
   openTodoDrawer(todo: Todo) {
     this.drawer.create({
       nzTitle: 'Thông Tin Công Việc',
       nzContent: ProfileComponent,
-      nzData: { todo }, // Truyền dữ liệu vào drawer
+      nzData: { todo },
       nzWidth: 480
     });
   }
+
   openEditModal(todo: Todo) {
     const modal = this.modal.create({
       nzTitle: 'Chỉnh sửa Công Việc',
@@ -95,26 +113,27 @@ export class DashboardComponent implements OnInit {
       nzData: { todo },
       nzFooter: null
     });
-  
+
     modal.afterClose.subscribe(updatedTodo => {
       if (updatedTodo) {
-        this.todos = this.todos.map(t => (t.id === updatedTodo.id ? updatedTodo : t)); // Cập nhật dữ liệu ngay
+        this.todos = this.todos.map(t => (t.id === updatedTodo.id ? updatedTodo : t));
+        this.updateDisplayTodos();
       }
     });
   }
 
   openCreateModal() {
-    const modal = this.modalService.create({
+    const modal = this.modal.create({
       nzTitle: 'Tạo Công Việc',
       nzContent: CreateTodoComponent,
       nzFooter: null
     });
-  
+
     modal.afterClose.subscribe((newTodo) => {
       if (newTodo) {
-        this.todos = [newTodo, ...this.todos]; 
+        this.todos = [newTodo, ...this.todos];
+        this.updateDisplayTodos();
       }
     });
   }
-  
 }

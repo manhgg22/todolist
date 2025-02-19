@@ -1,25 +1,55 @@
-<p><strong>Người làm:</strong> {{ todo?.user?.name || 'Không có dữ liệu' }}</p>
-<p><strong>Email:</strong> {{ todo?.user?.email || 'Không có dữ liệu' }}</p>
-
-<p><strong>Địa chỉ:</strong> 
-  {{ todo?.user?.address?.street || 'Không có dữ liệu' }},
-  {{ todo?.user?.address?.suite || '' }},
-  {{ todo?.user?.address?.city || '' }},
-  {{ todo?.user?.address?.zipcode || '' }}
-</p>
-
-<p><strong>Số điện thoại:</strong> {{ todo?.user?.phone || 'Không có dữ liệu' }}</p>
-<p><strong>Website:</strong> <a [href]="'http://' + todo?.user?.website" target="_blank">
-  {{ todo?.user?.website || 'Không có dữ liệu' }}</a>
-</p>
-
-<p><strong>Tiêu đề:</strong> {{ todo?.title || 'Không có dữ liệu' }}</p>
-
-<p><strong>Trạng thái:</strong> 
-  <span [ngClass]="{
-    'completed': todo?.completed,
-    'not-completed': !todo?.completed
-  }">
-    {{ todo?.completed ? '✔ Hoàn thành' : '❌ Chưa hoàn thành' }}
-  </span>
-</p>
+<div class="admin-profile" *ngIf="user">
+  <nz-avatar [nzSrc]="userAvatar" nzSize="small" nzShape="square"></nz-avatar>
+  <h3>{{ user.fullName }}</h3>
+  
+  <div *ngIf="!isEditing">
+    <p><strong>Username:</strong> {{ user.username }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Điện thoại:</strong> {{ user.phone }}</p>
+    <p><strong>Thành phố:</strong> {{ user.city }}</p>
+    <p><strong>Quốc gia:</strong> {{ user.country }}</p>
+    <p><strong>Vai trò:</strong> {{ user.role }}</p>
+    <p><strong>Đăng nhập lần cuối:</strong> {{ user.lastLogin }}</p>
+    <div class="button-group">
+      <button nz-button nzType="primary" (click)="toggleEdit()">Chỉnh sửa</button>
+      <button nz-button nzType="default" (click)="closeDrawer()">Đóng</button>
+    </div>
+  </div>
+  
+  <div *ngIf="isEditing">
+    <div>
+      <label for="username">Username:</label>
+      <input id="username" [(ngModel)]="user.username" nz-input />
+    </div>
+    <div>
+      <label for="email">Email:</label>
+      <input id="email" [(ngModel)]="user.email" nz-input />
+    </div>
+    <div>
+      <label for="phone">Điện thoại:</label>
+      <input id="phone" [(ngModel)]="user.phone" nz-input />
+    </div>
+    <div>
+      <label for="city">Thành phố:</label>
+      <input id="city" [(ngModel)]="user.city" nz-input />
+    </div>
+    <div>
+      <label for="country">Quốc gia:</label>
+      <input id="country" [(ngModel)]="user.country" nz-input />
+    </div>
+    <div>
+      <label for="role">Vai trò:</label>
+      <input id="role" [(ngModel)]="user.role" nz-input />
+    </div>
+    <div>
+      <label for="lastLogin">Đăng nhập lần cuối:</label>
+      <input id="lastLogin" [(ngModel)]="user.lastLogin" nz-input />
+    </div>
+    <div class="button-group">
+      <button nz-button nzType="primary" (click)="saveChanges()">Lưu</button>
+      <button nz-button nzType="default" (click)="toggleEdit()">Hủy</button>
+     
+    </div>
+    <button nz-button nzType="default" (click)="closeDrawer()">Đóng</button>
+  </div>
+</div>

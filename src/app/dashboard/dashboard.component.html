@@ -1,23 +1,34 @@
-<nz-table #basicTable [nzBordered]="true">
+<nz-table 
+  #basicTable 
+  [nzBordered]="true" 
+  [nzData]="todos"
+  [nzPageSize]="pageSize"
+  [nzShowPagination]="true"
+  [(nzPageIndex)]="pageIndex"
+  [nzTotal]="todos.length"
+  (nzPageIndexChange)="onPageChange($event)">
+
   <thead>
     <tr>
+      <th nzWidth="5%">ID</th>
       <th nzWidth="25%">Người làm</th>
       <th nzWidth="25%">Tiêu đề</th>
       <th nzWidth="20%">Trạng thái</th>
-      <th nzWidth="20%">Action</th>
+      <th nzWidth="25%">Action</th>
     </tr>
   </thead>
 
   <tbody>
-    <tr *ngFor="let todo of displayTodos">
+    <tr *ngFor="let todo of displayTodos; let i = index">
+      <td>{{ (pageIndex - 1) * pageSize + i + 1 }}</td>
       <td>{{ todo?.user?.name }}</td>
-      <td>{{ todo?.title }}</td>
+      <td (click)="openViewModal(todo)" class="clickable-row">{{ todo?.title }}</td>
       <td>
         <span [ngClass]="{ 'completed': todo?.completed, 'not-completed': !todo?.completed }">
           {{ todo?.completed ? '✔ Hoàn thành' : '❌ Chưa hoàn thành' }}
         </span>
       </td>
-      <td class="action-icons">
+      <td class="action-icons" (click)="$event.stopPropagation()">
         <nz-icon nzType="delete" nzTheme="outline" class="action-icon" (click)="confirmDelete(todo.id)"></nz-icon>  
         <nz-icon nzType="plus" nzTheme="outline" class="action-icon" (click)="openCreateModal()"></nz-icon> 
         <nz-icon nzType="edit" nzTheme="outline" class="action-icon" (click)="openEditModal(todo)"></nz-icon>  
@@ -27,11 +38,3 @@
     </tr>
   </tbody>
 </nz-table>
-
-<!-- Phân trang -->
-<nz-pagination 
-  [(nzPageIndex)]="pageIndex" 
-  [nzTotal]="todos.length" 
-  [nzPageSize]="pageSize"
-  (nzPageIndexChange)="onPageChange($event)">
-</nz-pagination>

@@ -22,10 +22,10 @@ import { NzPaginationModule } from 'ng-zorro-antd/pagination';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  todos: Todo[] = []; // Danh sách công việc đầy đủ
-  displayTodos: Todo[] = []; // Danh sách công việc hiển thị theo trang
-  pageSize = 10; // Số công việc mỗi trang
-  pageIndex = 1; // Trang hiện tại
+  todos: Todo[] = []; 
+  displayTodos: Todo[] = []; 
+  pageSize = 15; 
+  pageIndex = 1; 
 
   constructor(
     private todoService: TodoService,
@@ -38,12 +38,12 @@ export class DashboardComponent implements OnInit {
     this.loadTodos();
   }
 
-  // Lấy danh sách công việc từ API
+
   loadTodos() {
     this.todoService.getTodosWithUsers().subscribe({
       next: (data) => {
         this.todos = data;
-        this.updateDisplayTodos(); // Cập nhật danh sách hiển thị ban đầu
+        this.updateDisplayTodos(); 
       },
       error: (err) => {
         console.error('❌ Lỗi khi tải dữ liệu:', err);
@@ -51,14 +51,13 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  // Cập nhật danh sách công việc hiển thị dựa trên trang hiện tại
   updateDisplayTodos() {
     const startIndex = (this.pageIndex - 1) * this.pageSize;
     const endIndex = startIndex + this.pageSize;
     this.displayTodos = this.todos.slice(startIndex, endIndex);
   }
 
-  // Khi chuyển trang, cập nhật danh sách hiển thị
+  
   onPageChange(index: number) {
     this.pageIndex = index;
     this.updateDisplayTodos();

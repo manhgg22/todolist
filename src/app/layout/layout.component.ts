@@ -6,12 +6,13 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
-import { NzDrawerModule } from 'ng-zorro-antd/drawer'; // Import Drawer
+import { NzDrawerModule, NzDrawerService } from 'ng-zorro-antd/drawer'; // Import Drawer
 import { DashboardComponent } from "../dashboard/dashboard.component";
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { ProfileComponent } from '../profile/profile.component';
 
 @Component({
   selector: 'app-layout',
@@ -28,7 +29,6 @@ export class LayoutComponent {
   userAvatar = 'https://i.pravatar.cc/150?img=3'; 
   userName = 'Nguyễn Văn A'; 
   notificationCount = 5; 
-  isDrawerVisible = false; // Trạng thái drawer
 
   // Fake dữ liệu admin
   adminProfile = {
@@ -42,7 +42,11 @@ export class LayoutComponent {
     lastLogin: "2025-02-18 14:30"
   };
 
-  constructor(private router: Router, private message: NzMessageService) {}
+  constructor(
+    private router: Router, 
+    private message: NzMessageService,
+    private drawerService: NzDrawerService // Inject NzDrawerService
+  ) {}
 
   logout(): void {
     localStorage.removeItem("Login");
@@ -52,11 +56,12 @@ export class LayoutComponent {
 
   openDrawer(): void {
     console.log("Mở drawer, dữ liệu admin:", this.adminProfile); // Debug
-    this.isDrawerVisible = true;
-  }
-  
-
-  closeDrawer(): void {
-    this.isDrawerVisible = false;
+    this.drawerService.create({
+      nzTitle: 'Thông tin quản trị viên',
+      nzContent: ProfileComponent,
+      nzWidth: '400px',
+      nzData: { user: this.adminProfile }, // Truyền dữ liệu adminProfile vào drawer
+      nzClosable: true
+    });
   }
 }

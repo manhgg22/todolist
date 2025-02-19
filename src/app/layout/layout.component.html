@@ -45,6 +45,14 @@
               <li nz-menu-item>Option 12</li>
             </ul>
           </li>
+          <li nz-submenu nzOpen nzTitle="Subnav 2" nzIcon="laptop">
+            <ul>
+              <li nz-menu-item>Option 13</li>
+              <li nz-menu-item>Option 14</li>
+              <li nz-menu-item>Option 15</li>
+              <li nz-menu-item>Option 16</li>
+            </ul>
+          </li>
         </ul>
       </nz-sider>
 
@@ -52,22 +60,9 @@
         <app-dashboard></app-dashboard>
       </nz-content>
     </nz-layout>
-
-    <nz-footer>Ant Design ©2020 Implement By Angular</nz-footer>
   </nz-content>
-</nz-layout>
 
-<!-- Drawer hiển thị thông tin admin -->
-<nz-drawer [nzVisible]="isDrawerVisible" [nzWidth]="300" nzTitle="Thông tin Admin" (nzOnClose)="closeDrawer()">
-  <div class="admin-profile">
-    <nz-avatar [nzSrc]="userAvatar" nzSize="large"></nz-avatar>
-    <h3>{{ adminProfile.fullName }}</h3>
-    <p><strong>Username:</strong> {{ adminProfile.username }}</p>
-    <p><strong>Email:</strong> {{ adminProfile.email }}</p>
-    <p><strong>Điện thoại:</strong> {{ adminProfile.phone }}</p>
-    <p><strong>Thành phố:</strong> {{ adminProfile.city }}</p>
-    <p><strong>Quốc gia:</strong> {{ adminProfile.country }}</p>
-    <p><strong>Chức vụ:</strong> {{ adminProfile.role }}</p>
-    <p><strong>Đăng nhập gần nhất:</strong> {{ adminProfile.lastLogin }}</p>
-  </div>
-</nz-drawer>
+  <nz-footer class="footer">Ant Design ©2020 Implement By Angular</nz-footer>
+
+ 
+</nz-layout>

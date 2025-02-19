@@ -31,4 +31,13 @@ nz-table {
     transform: scale(1.2); 
     color: #1890ff;  
   }
+  .clickable-row {
+    cursor: pointer; /* Biến con trỏ chuột thành dạng bàn tay */
+  }
+  
+  .clickable-row:hover {
+    background-color: #f5f5f5; /* Tô màu khi hover để giống hiệu ứng của View */
+    transition: background-color 0.3s ease;
+  }
+  
   

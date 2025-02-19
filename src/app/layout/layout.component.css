@@ -26,3 +26,26 @@
 .logout-btn {
   color: red;
 }
+.footer {
+  background: #333;
+  color: white;
+  padding: 16px;
+  text-align: center;
+}
+nz-drawer {
+  border: 2px solid red !important;
+  background: rgba(255, 0, 0, 0.1) !important;
+}
+.admin-profile {
+  text-align: center;
+}
+
+.admin-profile h3 {
+  margin-top: 10px;
+}
+
+.admin-profile p {
+  font-size: 14px;
+  margin: 5px 0;
+}
+

@@ -26,11 +26,10 @@ import { ProfileComponent } from '../profile/profile.component';
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class LayoutComponent {
-  userAvatar = 'https://i.pravatar.cc/150?img=3'; 
+  userAvatar = 'https://i.pravatar.cc/150?img=2'; 
   userName = 'Nguyễn Văn A'; 
   notificationCount = 5; 
 
-  // Fake dữ liệu admin
   adminProfile = {
     username: "admin123",
     fullName: "Nguyễn Văn A",
@@ -45,7 +44,7 @@ export class LayoutComponent {
   constructor(
     private router: Router, 
     private message: NzMessageService,
-    private drawerService: NzDrawerService // Inject NzDrawerService
+    private drawerService: NzDrawerService 
   ) {}
 
   logout(): void {
@@ -55,12 +54,12 @@ export class LayoutComponent {
   }
 
   openDrawer(): void {
-    console.log("Mở drawer, dữ liệu admin:", this.adminProfile); // Debug
+    console.log("Mở drawer, dữ liệu admin:", this.adminProfile); 
     this.drawerService.create({
       nzTitle: 'Thông tin quản trị viên',
       nzContent: ProfileComponent,
       nzWidth: '400px',
-      nzData: { user: this.adminProfile }, // Truyền dữ liệu adminProfile vào drawer
+      nzData: { user: this.adminProfile }, 
       nzClosable: true
     });
   }

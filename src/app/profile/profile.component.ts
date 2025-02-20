@@ -14,7 +14,7 @@ import { NzAvatarModule } from 'ng-zorro-antd/avatar';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent {
-   userAvatar = 'https://i.pravatar.cc/150?img=3'; 
+   userAvatar = 'https://i.pravatar.cc/150?img=2'; 
   user: any;
   isEditing: boolean = false;
 

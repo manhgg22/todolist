@@ -26,21 +26,21 @@ export class CreateTodoComponent {
     private message: NzMessageService
   ) {
     this.createForm = this.fb.group({
-      user: ['', Validators.required], // Nhập tên người làm
-      title: ['', Validators.required], // Tiêu đề công việc
-      completed: ['false', Validators.required] // Mặc định chưa hoàn thành
+      user: ['', Validators.required], 
+      title: ['', Validators.required], 
+      completed: ['false', Validators.required]
     });
   }
 
   saveTodo() {
     if (this.createForm.valid) {
       const newTodo: Todo = {
-        id: Math.floor(Math.random() * 10000), // Giả lập id
-        userId: Math.floor(Math.random() * 1000), // Thêm userId vào
+        id: Math.floor(Math.random() * 10000), 
+        userId: Math.floor(Math.random() * 1000),
         title: this.createForm.value.title,
         completed: this.createForm.value.completed === 'true',
         user: {
-          id: Math.floor(Math.random() * 1000), // Giả lập id user
+          id: Math.floor(Math.random() * 1000), 
           name: this.createForm.value.user,
           username: '', 
           email: '', 

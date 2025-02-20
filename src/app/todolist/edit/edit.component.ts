@@ -29,7 +29,7 @@ export class EditTodoComponent implements OnInit {
 
   ngOnInit() {
     this.editForm = this.fb.group({
-      user: [this.data.todo.user?.name || '', Validators.required], // Cho phép nhập tên người làm
+      user: [this.data.todo.user?.name || '', Validators.required], 
       title: [this.data.todo.title, Validators.required],
       completed: [this.data.todo.completed ? 'true' : 'false', Validators.required]
     });
@@ -41,7 +41,7 @@ export class EditTodoComponent implements OnInit {
         ...this.data.todo,
         ...this.editForm.value,
         completed: this.editForm.value.completed === 'true',
-        user: { name: this.editForm.value.user } // Cập nhật user với tên mới
+        user: { name: this.editForm.value.user } 
       };
 
       this.todoService.editTodo(updatedTodo).subscribe({

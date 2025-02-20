@@ -99,7 +99,7 @@ export class DashboardComponent implements OnInit {
 
   openTodoDrawer(todo: Todo) {
     this.drawer.create({
-      nzTitle: 'Thông Tin Chi Tiet Công Việc',
+      nzTitle: 'Thông Tin Chi Tiết Người Làm ',
       nzContent: CusprofileComponent,
       nzData: { todo },
       nzWidth: 480

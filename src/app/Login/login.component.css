@@ -1,16 +1,51 @@
+.login-container {
+  width: 350px;
+  margin: 50px auto;
+  text-align: center;
+}
+
+.welcome-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+nz-avatar {
+  margin-bottom: 15px;
+}
 
 .login-form {
-    max-width: 300px;
-  }
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 
-  .login-form-margin {
-    margin-bottom: 16px;
-  }
+nz-form-item {
+  width: 100%;
+}
 
-  .login-form-forgot {
-    float: right;
-  }
+.login-btn {
+  width: 100%;
+  background-color: black;
+  color: white;
+  border-radius: 20px;
+  padding: 10px;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0, 128, 0, 0.3);
+}
 
-  .login-form-button {
-    width: 100%;
-  }
+.login-links {
+  margin-top: 15px;
+  font-size: 12px;
+}
+
+.login-links a {
+  display: block;
+  color: #666;
+  text-decoration: none;
+}
+
+.login-links span {
+  color: black;
+  font-weight: bold;
+}

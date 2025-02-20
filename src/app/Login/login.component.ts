@@ -7,11 +7,20 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { RouterModule } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar'; 
 
 @Component({
   selector: 'app-login',
-  
-  imports: [ReactiveFormsModule, NzButtonModule, RouterModule, NzCheckboxModule, NzFormModule, NzInputModule],
+  standalone: true,
+  imports: [
+    ReactiveFormsModule,
+    NzButtonModule,
+    RouterModule,
+    NzCheckboxModule,
+    NzFormModule,
+    NzInputModule,
+    NzAvatarModule 
+  ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
@@ -34,21 +43,13 @@ export class LoginComponent {
     if (this.validateForm.valid) {
       const { username, password } = this.validateForm.value;
 
-     
-      const validUsername = "admin";
-      const validPassword = "admin";
-
-     
-      if (username === validUsername && password === validPassword) {
-        
-
-        localStorage.setItem("user", JSON.stringify({ username, password }));
-        this.router.navigateByUrl('layout');
-        this.message.success('Login successful');
+      if (username === "admin" && password === "admin") {
+        localStorage.setItem("Login", "true");
+        this.router.navigateByUrl('/layout'); 
+        this.message.success('Đăng nhập thành công!');
       } else {
-        this.message.error('Check username or password');
+        this.message.error('Sai tài khoản hoặc mật khẩu!');
       }
-    } 
-    
+    }
   }
 }

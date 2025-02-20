@@ -1,0 +1,25 @@
+<p><strong>Người làm:</strong> {{ todo?.user?.name || 'Không có dữ liệu' }}</p>
+<p><strong>Email:</strong> {{ todo?.user?.email || 'Không có dữ liệu' }}</p>
+
+<p><strong>Địa chỉ:</strong> 
+  {{ todo?.user?.address?.street || 'Không có dữ liệu' }},
+  {{ todo?.user?.address?.suite || '' }},
+  {{ todo?.user?.address?.city || '' }},
+  {{ todo?.user?.address?.zipcode || '' }}
+</p>
+
+<p><strong>Số điện thoại:</strong> {{ todo?.user?.phone || 'Không có dữ liệu' }}</p>
+<p><strong>Website:</strong> <a [href]="'http://' + todo?.user?.website" target="_blank">
+  {{ todo?.user?.website || 'Không có dữ liệu' }}</a>
+</p>
+
+<p><strong>Tiêu đề:</strong> {{ todo?.title || 'Không có dữ liệu' }}</p>
+
+<p><strong>Trạng thái:</strong> 
+  <span [ngClass]="{
+    'completed': todo?.completed,
+    'not-completed': !todo?.completed
+  }">
+    {{ todo?.completed ? '✔ Hoàn thành' : '❌ Chưa hoàn thành' }}
+  </span>
+</p>

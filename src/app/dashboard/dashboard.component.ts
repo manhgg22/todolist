@@ -12,6 +12,7 @@ import { NzDrawerService } from 'ng-zorro-antd/drawer';
 import { EditTodoComponent } from '../todolist/edit/edit.component';
 import { CreateTodoComponent } from '../todolist/create/create.component';
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
+import { CusprofileComponent } from '../cusprofile/cusprofile.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -46,7 +47,7 @@ export class DashboardComponent implements OnInit {
         this.updateDisplayTodos(); 
       },
       error: (err) => {
-        console.error('❌ Lỗi khi tải dữ liệu:', err);
+        console.error('Lỗi khi tải dữ liệu:', err);
       }
     });
   }
@@ -98,8 +99,8 @@ export class DashboardComponent implements OnInit {
 
   openTodoDrawer(todo: Todo) {
     this.drawer.create({
-      nzTitle: 'Thông Tin Công Việc',
-      nzContent: ProfileComponent,
+      nzTitle: 'Thông Tin Chi Tiet Công Việc',
+      nzContent: CusprofileComponent,
       nzData: { todo },
       nzWidth: 480
     });

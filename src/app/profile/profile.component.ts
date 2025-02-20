@@ -30,8 +30,6 @@ export class ProfileComponent {
   }
 
   saveChanges(): void {
-    // Logic to save changes
-    console.log('User data saved:', this.user);
     this.isEditing = false;
   }
 

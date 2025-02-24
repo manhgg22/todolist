@@ -40,4 +40,57 @@ nz-table {
     transition: background-color 0.3s ease;
   }
   
+  .toolbar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .clickable-row {
+    cursor: pointer;
+    color: blue;
+  }
+  
+  .completed {
+    color: green;
+  }
+  
+  .not-completed {
+    color: red;
+  }
+  
+  .action-icons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .action-icon {
+    cursor: pointer;
+    font-size: 18px;
+  }
+  
+  .action-icon:hover {
+    color: #1890ff;
+  }
+  .search-filter-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .search-box {
+    flex: 1;
+    max-width: 50%;
+  }
+  
+  .filter-box {
+    max-width: 30%;
+  }
+  nz-pagination {
+    display: flex;
+    justify-content: flex-end; /* Căn phải */
+    margin-top: 20px;
+  }
   

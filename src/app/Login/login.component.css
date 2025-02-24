@@ -1,41 +1,54 @@
+/* Căn giữa container login */
 .login-container {
   width: 350px;
-  margin: 50px auto;
-  text-align: center;
+  margin: 100px auto; /* Canh giữa theo chiều dọc */
+  text-align: center; /* Canh giữa nội dung */
+  padding: 30px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
+/* Tiêu đề Welcome */
 .welcome-title {
-  font-size: 24px;
+  font-size: 28px;
   font-weight: bold;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
+/* Avatar */
 nz-avatar {
   margin-bottom: 15px;
 }
 
+/* Form login */
 .login-form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
+  align-items: center; /* Canh giữa các input */
 }
 
+/* Các ô input */
 nz-form-item {
   width: 100%;
 }
 
+/* Nút login */
 .login-btn {
   width: 100%;
+  max-width: 200px; /* Giới hạn kích thước tối đa */
   background-color: black;
   color: white;
   border-radius: 20px;
-  padding: 10px;
   font-weight: bold;
   box-shadow: 0 4px 10px rgba(0, 128, 0, 0.3);
+  text-align: center; /* Canh giữa chữ */
 }
 
+/* Link Forgot/Sign up */
 .login-links {
-  margin-top: 15px;
+  margin-top: 20px;
   font-size: 12px;
 }
 

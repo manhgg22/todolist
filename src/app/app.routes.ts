@@ -5,10 +5,15 @@ import { LayoutComponent } from './layout/layout.component';
 import { gurdGuard } from './Guard/gurd.guard';
 
 export const routes: Routes = [
-    {path:'', redirectTo: 'login', pathMatch:'full'},
-    {path:'login', component:LoginComponent},
-    {path:'dashboard', component:DashboardComponent,  canActivate: [gurdGuard]},
-    {path:'layout', component:LayoutComponent,  canActivate: [gurdGuard]}
+  { path: '', redirectTo: 'login', pathMatch: 'full' }, 
+  { path: 'login', component: LoginComponent }, 
 
-    
+  { 
+    path: 'layout',  component: LayoutComponent,   canActivate: [gurdGuard], children: [
+    { path: '', redirectTo: 'dashboard', pathMatch: 'full' }, 
+    { path: 'dashboard', component: DashboardComponent } 
+    ]
+  },
+
+  { path: '**', redirectTo: 'login' } 
 ];
